@@ -31,7 +31,7 @@ function kmpSearch(pattern, text) {
 }
 
 function setBorderFunction(pattern) {
-    // Nilai border function untuk index 0 selalu 0
+    // Border function for index 0 always 0
     const b = [0];
     let j = 0;
 
