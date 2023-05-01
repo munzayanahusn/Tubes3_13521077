@@ -2,29 +2,29 @@ const mysql = require('mysql');
 
 // Membuat koneksi ke database
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'username',
-  password: 'password',
-  database: 'mydatabase'
+  host: 'LAPTOP-V14RGQ8S',
+  user: 'root',
+  password: '',
+  database: 'gptkw'
 });
 
 async function addQuestion(question, answer) {
-    const existingQuestion = await pool.query("SELECT * FROM questions WHERE question = $1", [question]);
+    const existingQuestion = await connection.query("SELECT * FROM questions WHERE question like ?", [question]);
   
-    if (existingQuestion.rows.length > 0) {
+    if (existingQuestion.length > 0) {
       // Jika pertanyaan sudah ada, maka hanya jawaban yang akan diperbarui
-      await pool.query("UPDATE questions SET answer = $1 WHERE question = $2", [answer, question]);
+      await connection.query("UPDATE questions SET answer = ? WHERE question = ?", [answer, question]);
       return "Jawaban untuk pertanyaan ini telah diperbarui.";
     } else {
       // Jika pertanyaan belum ada, maka ditambahkan ke database
-      await pool.query("INSERT INTO questions (question, answer) VALUES ($1, $2)", [question, answer]);
+      await connection.query("INSERT INTO questions (question, answer) VALUES (?, ?)", [question, answer]);
       return "Pertanyaan baru berhasil ditambahkan.";
     }
   }
   
 
 function deleteQuestion(question) {
-    const query = `DELETE FROM questions WHERE question_text LIKE '%${question}%'`;
+    const query = `DELETE FROM questions WHERE question LIKE '%${question}%'`;
   
     connection.query(query, (err, result) => {
       if (err) throw err;
@@ -53,5 +53,29 @@ function getAnswer(question) {
   }
   
 
-// Menutup koneksi ke database
-connection.end();
+// example of use
+
+// function main() {
+//   const question = "When is the independence day of Indonesia?";
+//   const answer = "17 August 1945";
+  
+//   // Panggil fungsi addQuestion untuk menambahkan pertanyaan ke database
+//   addQuestion(question, answer)
+//     .then((result) => {
+//       console.log(result);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     })
+//     .finally(() => {
+//       // Menutup koneksi ke database setelah selesai
+//       connection.end();
+//     });
+
+//     getAnswer(question);
+
+//     deleteQuestion("What is the capital of France?");
+// }
+
+// // Panggil fungsi main untuk memulai program
+// main();

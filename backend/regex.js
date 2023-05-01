@@ -1,5 +1,5 @@
 // calculator regex
-const calculator_mode_regex = /^(\s*[\d()+\/*^+-]+\s*)*$/;
+const calculator_mode_regex = /^(\s*[\d()+\/*^+-]+\s*)*\??$/;
 // const calculator_validation_regex = 
 
 // date regex
