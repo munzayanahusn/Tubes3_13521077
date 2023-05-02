@@ -52,10 +52,3 @@ function prefixFunction(pattern) {
 
     return pf;
 }
-
-const str1 = "Apel merah";
-const str2 = "apel hijau dan apel merah";
-
-const similarity = kmpSimilarity(str1, str2);
-
-console.log(similarity); // Output: 40
