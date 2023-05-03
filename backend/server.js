@@ -1,6 +1,7 @@
 
 const express = require('express');
 const cors = require('cors');
+const db = require('backend/database/database.js')
 
 const app = express();
 
@@ -23,9 +24,13 @@ app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
 });
 
-function getAnswer(algo, question) {
-    if (algo == "KMP" || algo == "BM") {
-        return question + "-KMP answer"
+async function getAnswer(algo, question) {
+    if (algo == "KMP") {
+        arrQuest = await db.getAllQuestions();
+        return question + "-KMP answer" // searchQuestionKMP(arrQuest, question)
+    } else if (algo == "BM") {
+        arrQuest = await db.getAllQuestions();
+        return question + "- BM answer" // searchQuestionBM(arrQuest, question)
     } else if (algo == "Date") {
         return getDay(question);
     } else if (algo == "Calculator") {
