@@ -35,13 +35,7 @@
 import Link from 'next/link'
 import { SetStateAction, useEffect, useState } from 'react'
 
-const App = () => {
-    
-}
 
-interface Algo {
-    setAlgo : any
-}
 
 export default function Algorithm(){
     const [toggleAlgo, setToggleAlgo] = useState(true)
