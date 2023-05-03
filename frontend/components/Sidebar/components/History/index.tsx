@@ -18,23 +18,6 @@ export default function History(){
 
     const [selectedHistory, setSelectedHistory] = useState(histories[0].id);
 
-    function showHistoryTab(){
-        return (
-            <div className='fixed top-[110px] flex flex-col h-[450px] w-[350px]'>
-                <div className={'list-group-item list-group-item-action lh-tight h-fit'}>
-                    {histories.map((history) => {
-                        return (
-                                <div className='grid grid-cols-1 h-tight'>
-                                    <button className={'w-[350px] h-[40px] text-white hover:bg-slate-500 '+ (selectedHistory==history.id? 'bg-gray-700':'')} onClick={() => setSelectedHistory(history.id)}>
-                                    {history.chat[0][1]}</button>
-                                </div>
-                        )})
-                    }
-                </div>
-            </div>
-        )
-    }
-
 
     const addNewChat = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -59,8 +42,8 @@ export default function History(){
                 {histories.map((history) => {
                     return (
                             <div className='grid grid-cols-1 h-tight'>
-                                <button className={'w-[350px] h-[40px] text-white hover:bg-slate-500 '+ (selectedHistory==history.id? 'bg-gray-700':'')} onClick={() => setSelectedHistory(history.id)}>
-                                {history.chat[0][1]}</button>
+                                <button className={'w-[350px] h-[40px] text-white hover:bg-slate-500 text-start px-6 '+ (selectedHistory==history.id? 'bg-gray-700':'')} onClick={() => setSelectedHistory(history.id)}>
+                                {history.chat[0].length==0?"new chat":history.chat[0][1]}</button>
                             </div>
                     )})
                 }
