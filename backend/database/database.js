@@ -152,11 +152,11 @@ function getHistoryById(id) {
               for (let i = 0; i < results.length; i++) {
                   const row = results[i];
                   
-                  history.questions[row.id] = {
+                  history.questions.push({
                       id: row.id,
                       text: row.question_text,
                       answer: row.answer_text
-                  };
+                  });
               }
               resolve(history);
           }
