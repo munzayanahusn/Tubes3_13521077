@@ -1,12 +1,19 @@
 import Sidebar from '../components/Sidebar'
 import Chat from '../components/Chat'
+import { useState } from 'react';
 
 
 export default function Home() {
+  const [algo, setAlgo] = useState("KMP");
+
+  // const handleAlgo = (e: { target: { value: any; }; }) => {
+  //   setAlgo(e.target.value);
+  // };
+  
   return (
     <div className="App">
-      <Chat />
-      <Sidebar />
+      <Chat algo={algo}/>
+      <Sidebar algo={algo} setAlgo={setAlgo}/>
     </div>
   )
 }

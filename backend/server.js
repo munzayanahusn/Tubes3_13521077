@@ -15,18 +15,19 @@ var question =""
 
 app.post('/URL', (req, res) => {
     question = req.body.isiChat
-    res.json({ answer: getAnswer("KMP",question) });
+    algo = req.body.algorithm
+    res.json({ answer: getAnswer(algo,question) });
 });
   
 app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
-  });
+});
 
 function getAnswer(algo,question){
-    if (algo="KMP"){
+    if (algo=="KMP"){
         return question + "-KMP answer"
     } else {
-        return question + "-No answer"
+        return question + "-BM answer"
     }
 }
 

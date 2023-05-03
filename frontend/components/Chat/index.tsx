@@ -10,7 +10,7 @@ import { useRef } from 'react';
 // element?.scrollIntoView();
 let allMessages: any[] = [];
 
-export default function Chat(){
+export default function Chat({algo}: { algo: string }){
     const [messages, setMessages] = useState([] as  any[]);
     const [message, setMessage] = useState('');
 
@@ -21,7 +21,7 @@ export default function Chat(){
         fetch('http://localhost:8000/URL', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ isiChat: message })
+            body: JSON.stringify({ algorithm: algo, isiChat: message })
         })
         .then(res => {
             if (res.ok) {
@@ -77,6 +77,7 @@ export default function Chat(){
                 <button type="submit" className="bg-slate-500 rounded-md py-1 px-2 shadow-md hover:bg-slate-600">submit</button>
             </form>
         </div>
+    
         </>
     )
 }
