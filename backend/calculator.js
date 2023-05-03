@@ -82,7 +82,7 @@ function evaluate(operand1, operand2, operator) {
     }
 }
 
-
+/*
 // Input output 
 const readline = require('readline');
 
@@ -103,6 +103,7 @@ function calculator() {
 }
 
 calculator();
+*/
 
 /**
  * Pembanding :

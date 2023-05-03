@@ -6,7 +6,7 @@ function searchQuestion(arrtext, pattern, isKMP) {
         found = False;
         for (let i = 0; i < arrtext.length && !found; i++) {
             result = kmpSearch(pattern, arrtext[i]);
-            if (result == 0) {
+            if (result != -1) {
                 // Exact match
                 found = true;
                 return arrtext[i];
