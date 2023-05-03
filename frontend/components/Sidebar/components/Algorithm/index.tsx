@@ -2,7 +2,6 @@ import {useState } from 'react'
 
 export default function Algorithm({algo, setAlgo}: { algo: string, setAlgo: any }){
     const [toggleAlgo, setToggleAlgo] = useState(true)
-
     return (
         <div>
             <div className='h-[125px] w-[350px] bg-black text-white p-4'>

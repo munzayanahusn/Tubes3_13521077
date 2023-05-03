@@ -77,7 +77,7 @@ export default function Chat({algo}: { algo: string }){
                 <button type="submit" className="bg-slate-500 rounded-md py-1 px-2 shadow-md hover:bg-slate-600">submit</button>
             </form>
         </div>
-    
+
         </>
     )
 }
