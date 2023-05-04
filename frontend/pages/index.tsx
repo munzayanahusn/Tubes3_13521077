@@ -39,7 +39,6 @@ export default function Home() {
       const res1 = await fetchHistory();
       const h: History[] = res1.histories;
       setHistories(h);
-          ]
     } catch (error) {
       console.error(error);
     }
