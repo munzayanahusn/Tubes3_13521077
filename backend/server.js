@@ -19,7 +19,7 @@ let h = [
 ];
 
 app.get('/history', async (req, res) => {
-    console.log(h);
+    // console.log(h);
     await res.json({ histories: h });
 });
 
@@ -53,6 +53,7 @@ async function getAnswer(algo, question) {
             arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionKMP(arrQuest, question);
+            console.log(arrQuest);
             if (found) return db.getAnswer(result);
             else return result; // Top 3 question termirip
         } else if (algo == "BM") {
