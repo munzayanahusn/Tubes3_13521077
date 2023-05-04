@@ -55,16 +55,31 @@ async function getAnswer(algo, question) {
             [found, result] = search.searchQuestionKMP(arrQuest, question);
             console.log(arrQuest);
             if (found) return db.getAnswer(result);
-            else return result; // Top 3 question termirip
+            else return getTop3(result); // Top 3 question termirip
         } else if (algo == "BM") {
             arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionBM(arrQuest, question);
             if (found) return db.getAnswer(result);//db.getAnswer(result);
-            else return result; // Top 3 question termirip
+            else return getTop3(result); // Top 3 question termirip
         }
     } else {
         return "Ge kedetect";
+    }
+}
+
+function getTop3(arrTop) {
+    if (arrTop[0] == '') return "Maaf saya tidak bisa menjawab pertanyaan apapun (database kosong)";
+    else {
+        str = "Hmm, saya kurang mengerti.\n Mungkin yang kamu maksud:";
+        for (let i = 0; i < arrTop.length; i++) {
+            if (arrTop[i] != '') {
+                newStr = (i + 1) + ". " + arrTop[i] + "\n";
+                str += newStr
+            }
+        }
+        str += "(ketikkan kembali pertanyaan yang Anda maksud)";
+        return str;
     }
 }
 
