@@ -13,9 +13,15 @@ app.use(express.json());
 
 var question = ""
 
-// app.get('/history', (req, res) => {
-//     res.json({ history: "Hello from server!" });
-// });
+let h = [
+    { id: 0, chat: [{ q: 'bangunnnnnnn', a: 'hello' }, { q: 'fsfwr', a: 'hello' }] },
+    { id: 1, chat: [{ q: 'haiiii', a: 'helledefo' }, { q: 'sdfsdfsd', a: 'helfsdcsdlo' }] },
+];
+
+app.get('/history', async (req, res) => {
+    // console.log(h);
+    await res.json({ histories: h });
+});
 
 app.post('/URL', async (req, res) => {
     question = req.body.isiChat
@@ -44,20 +50,36 @@ async function getAnswer(algo, question) {
         return await db.deleteQuestion(x);
     } else if (alg == "Search") {
         if (algo == "KMP") {
-            //arrQuest = await db.getAllQuestions();
+            arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionKMP(arrQuest, question);
-            if (found) return result;
-            else return result; // Top 3 question termirip
+            console.log(arrQuest);
+            if (found) return db.getAnswer(result);
+            else return getTop3(result); // Top 3 question termirip
         } else if (algo == "BM") {
-            //arrQuest = await db.getAllQuestions();
-            arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
+            arrQuest = await db.getAllQuestions();
+            //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionBM(arrQuest, question);
-            if (found) return result;//db.getAnswer(result);
-            else return result; // Top 3 question termirip
+            if (found) return db.getAnswer(result);//db.getAnswer(result);
+            else return getTop3(result); // Top 3 question termirip
         }
     } else {
         return "Ge kedetect";
+    }
+}
+
+function getTop3(arrTop) {
+    if (arrTop[0] == '') return "Maaf saya tidak bisa menjawab pertanyaan apapun (database kosong)";
+    else {
+        str = "Hmm, saya kurang mengerti.\n Mungkin yang kamu maksud:";
+        for (let i = 0; i < arrTop.length; i++) {
+            if (arrTop[i] != '') {
+                newStr = (i + 1) + ". " + arrTop[i] + "\n";
+                str += newStr
+            }
+        }
+        str += "(ketikkan kembali pertanyaan yang Anda maksud)";
+        return str;
     }
 }
 
