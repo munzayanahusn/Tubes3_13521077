@@ -27,6 +27,15 @@ app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
 });
 
+function getAnswer(algo, question) {
+    if (algo == "KMP") {
+        return question + "-KMP answer"
+    } else {
+        return question + "-BM answer"
+    }
+}
+
+/*
 async function getAnswer(algo, question) {
     alg = reg.get_algo(question);
     if (alg == "Calculator") {
@@ -47,3 +56,4 @@ async function getAnswer(algo, question) {
         }
     }
 }
+*/
