@@ -95,7 +95,7 @@ function getAllQuestions() {
 }
 
 // Function to add new history
-function addHistory(questionText, answerText) {
+function addHistory() {
     return new Promise((resolve, reject) => {
         const insertQuery = `INSERT INTO history (created_at) VALUES (NOW())`;
         
@@ -103,17 +103,7 @@ function addHistory(questionText, answerText) {
             if (error) {
                 reject(error);
             } else {
-                const historyId = insertResult.insertId;
-                
-                const insertQAndAQuery = `INSERT INTO q_and_a (history_id, question_text, answer_text) VALUES (?, ?, ?)`;
-                
-                connection.query(insertQAndAQuery, [historyId, questionText, answerText], (error, qAndAInsertResult) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve({id: historyId, questionId: qAndAInsertResult.insertId});
-                    }
-                });
+                resolve();
             }
         });
     });
@@ -220,7 +210,7 @@ function getRecentHistory() {
             }
         });
     });
-  }
+}
   
 
 
