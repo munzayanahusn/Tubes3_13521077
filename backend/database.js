@@ -182,8 +182,8 @@ function getRecentHistory() {
                     const chat = [];
                     for (let i = 0; i < qAndAResults.length; i++) {
                         chat.push({
-                            question_text: qAndAResults[i].question_text,
-                            answer_text: qAndAResults[i].answer_text
+                            q: qAndAResults[i].question_text,
+                            a: qAndAResults[i].answer_text
                         });
                     }
                     resolve({ id: historyId, chat });
@@ -254,15 +254,16 @@ function getRecentHistory() {
   
 //       // Log the results to the console
 //       console.log(recentHistory);
+//       console.log(recentHistory[0].chat);
 //     } catch (error) {
 //       console.error(error);
 //     } finally {
 //       // Close the database connection
 //       connection.end();
 //     }
-//   }
+// }
   
-//   main();  
+// main();  
 
 module.exports = {
   addQuestion,
