@@ -34,6 +34,14 @@ async function getAnswer(algo, question) {
         return cal.calculate(question);
     } else if (alg == "Date") {
         return dat.getDay(question);
+    } else if (alg == "Add Question") {
+        const match = str.match(/Tambah pertanyaan (.*) dengan jawaban (.*)/i);
+        const x = match[1];
+        const y = match[2];
+        return await db.addQuestion(x, y);
+    } else if (alg == "Delete Question") {
+        const x = str.match(/Hapus pertanyaan (.*)/i)[1];
+        return await db.deleteQuestion(x);
     } else if (alg == "Search") {
         if (algo == "KMP") {
             //arrQuest = await db.getAllQuestions();

@@ -25,8 +25,8 @@ function addQuestion(question, answer) {
                           [answer, question],
                           (error, results) => {
                               if (error) reject(error);
-                              console.log('Answer updated for question:', question);
-                              resolve();
+                            //   console.log('Answer updated for question:', question);
+                              resolve('Pertanyaan ', question, ' sudah ada! Jawaban di-update ke ', answer);
                           }
                       );
                   } // If the question doesn't exist, add a new question and answer
@@ -36,8 +36,8 @@ function addQuestion(question, answer) {
                           [question, answer],
                           (error, results) => {
                               if (error) reject(error);
-                              console.log('Question added to database:', question);
-                              resolve();
+                            //   console.log('Question added to database:', question);
+                              resolve('Pertanyaan ', question, ' telah ditambah');
                           }
                       );
                   }
@@ -51,8 +51,11 @@ function deleteQuestion(question) {
     return new Promise((resolve, reject) => {
         connection.query("DELETE FROM questions WHERE question LIKE ?", [question], (err, result) => {
             if (err) reject(err);
-            console.log(`${result.affectedRows} question(s) deleted from database!`);
-            resolve();
+            // console.log(`${result.affectedRows} question(s) deleted from database!`);
+            if (result.affectedRows == 0) {
+                resolve('Tidak ada pertanyaan ', question, ' pada database!');
+            }
+            resolve('Pertanyaan ', question, ' telah dihapus');
         });
     });
 }
@@ -70,7 +73,7 @@ function getAnswer(question) {
             // If an answer is found, return it
             if (results.length > 0) {
                 const answer = results[0].answer;
-                console.log(answer);
+                // console.log(answer);
                 resolve(answer);
             } else {
                 // If no answer is found, return an error message
