@@ -1,7 +1,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const db = require('backend/database/database.js')
+const db = require('./database/database.js')
 
 const app = express();
 
@@ -14,10 +14,10 @@ var question = ""
 //     res.json({ history: "Hello from server!" });
 // });
 
-app.post('/URL', (req, res) => {
+app.post('/URL', async (req, res) => {
     question = req.body.isiChat
     algo = req.body.algorithm
-    res.json({ answer: getAnswer(algo, question) });
+    res.json({ answer: await getAnswer(algo, question) });
 });
 
 app.listen(8000, () => {
@@ -26,18 +26,21 @@ app.listen(8000, () => {
 
 async function getAnswer(algo, question) {
     if (algo == "KMP") {
-        arrQuest = await db.getAllQuestions();
-        found, result = searchQuestionKMP(arrQuest, question);
-        if (found) return db.getAnswer(result);
-        else return result; // Top 3 question termirip
+        // arrQuest = await db.getAllQuestions();
+        // found, result = searchQuestionKMP(arrQuest, question);
+        // if (found) return db.getAnswer(result);
+        // else return result; // Top 3 question termirip
+        return question+"-sdasds"
     } else if (algo == "BM") {
-        arrQuest = await db.getAllQuestions();
-        found, result = searchQuestionBM(arrQuest, question);
-        if (found) return db.getAnswer(result);
-        else return result; // Top 3 question termirip
+        // arrQuest = await db.getAllQuestions();
+        // found, result = searchQuestionBM(arrQuest, question);
+        // if (found) return db.getAnswer(result);
+        // else return result; // Top 3 question termirip
     } else if (algo == "Date") {
-        return getDay(question);
+        // return getDay(question);
     } else if (algo == "Calculator") {
-        return calculate(question);
+        // return calculate(question);
+    } else {
+        return question+"-BManswer";
     }
 }
