@@ -1,3 +1,5 @@
+module.exports = { kmpSearch };
+
 function kmpSearch(pattern, text) {
     // Convert pattern dan text ke lowercase
     pattern = pattern.toLowerCase();
@@ -51,7 +53,9 @@ function setBorderFunction(pattern) {
     return b;
 }
 
+/*
 const pattern = "ab";
 const text = "aaakdakabab";
 
 console.log(kmpSearch(pattern, text));
+*/

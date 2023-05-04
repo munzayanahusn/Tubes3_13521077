@@ -20,6 +20,8 @@ function inputDate() {
 }
 */
 
+module.exports = { getDay }
+
 function getDay(dateString) {
     arrayDate = dateString.split(/\D+/);
     for (let i = 0; i < 3; i++) {

@@ -23,4 +23,4 @@ function get_algo(question) {
     }
 }
 
-module.exports= get_algo;
+module.exports = { get_algo };

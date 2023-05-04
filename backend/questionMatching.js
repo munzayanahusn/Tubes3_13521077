@@ -1,10 +1,16 @@
+module.exports = { searchQuestionKMP, searchQuestionBM };
+
+const kmp = require('./kmp');
+const bm = require('./bm');
+const lc = require('./LCS');
+
 const FastPriorityQueue = require('fastpriorityqueue');
 const prioRatio = new FastPriorityQueue((a, b) => a[0] > b[0]);
 
 function searchQuestionKMP(arrtext, pattern) {
     found = False;
     for (let i = 0; i < arrtext.length && !found; i++) {
-        result = kmpSearch(pattern, arrtext[i]);
+        result = km.kmpSearch(pattern, arrtext[i]);
         if (result != -1) {
             // Exact match
             found = true;
@@ -14,7 +20,7 @@ function searchQuestionKMP(arrtext, pattern) {
     if (!found) {
         // Question not found, find similarity
         for (let i = 0; i < arrtext.length && !found; i++) {
-            ratio = lcs(pattern, arrtext[i]);
+            ratio = lc.lcs(pattern, arrtext[i]);
             if (ratio >= 0.9) {
                 found = true;
                 return found, arrtext[i];
@@ -36,7 +42,7 @@ function searchQuestionKMP(arrtext, pattern) {
 function searchQuestionBM(arrtext, pattern) {
     found = False;
     for (let i = 0; i < arrtext.length && !found; i++) {
-        result = bmSearch(pattern, arrtext[i]);
+        result = bm.bmSearch(pattern, arrtext[i]);
         if (result == 0) {
             // Exact match
             found = true;
@@ -46,7 +52,7 @@ function searchQuestionBM(arrtext, pattern) {
     if (!found) {
         // Question not found, find similarity
         for (let i = 0; i < arrtext.length && !found; i++) {
-            ratio = lcs(pattern, arrtext[i]);
+            ratio = lc.lcs(pattern, arrtext[i]);
             if (ratio >= 0.9) {
                 found = true;
                 return found, arrtext[i];

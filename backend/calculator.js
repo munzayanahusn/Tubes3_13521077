@@ -1,4 +1,5 @@
-// Fungsi perhitungan
+module.exports = { calculate }
+
 function calculate(expression) {
     const operands = [];
     const operators = [];

@@ -1,3 +1,5 @@
+module.exports = { bmSearch };
+
 function bmSearch(pattern, text) {
     // Convert pattern and text to lowercase
     pattern = pattern.toLowerCase();
@@ -49,7 +51,9 @@ function lastOccurrence(pattern) {
     return last;
 }
 
+/*
 const pattern = "ab";
 const text = "aaakdakabab";
 
 console.log(bmSearch(pattern, text)); // Output: 5
+*/
