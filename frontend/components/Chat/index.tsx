@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useState,useEffect,use } from 'react'
-import { useRef } from 'react';
+import { Message } from '../../pages/index';
+import { History } from '../../pages/index';
 
 // let chats = new Map<number, Map<number,string>[]>();
 // let chats = new Map<number,string>([
@@ -8,12 +9,25 @@ import { useRef } from 'react';
 
 // const element = document.getElementById("Scroll");
 // element?.scrollIntoView();
-let allMessages: any[] = [];
 
-export default function Chat({algo}: { algo: string }){
-    const [messages, setMessages] = useState([] as  any[]);
+// let allMessages: Message[] = [];
+
+export default function Chat({algo,messages,setMessages,histories,setHistories,historyID,setHistoryID}:
+    {messages:Message[],setMessages:any,algo:string,histories:History[], setHistories:any,historyID:number,setHistoryID:any}){
+
+        // function messageHandler(){
+        //     for(let i=0;i<histories.length;i++){
+        //         if (histories[i].id==historyID){
+ 
+        //             allMessages = [...histories[i].chat];
+        //             return histories[i].chat;
+        //         }
+        //     }
+        //     return [];
+        // }
+
+    // const [messages, setMessages] = useState(messageHandler);
     const [message, setMessage] = useState('');
-
     const [response, setResponse] = useState('');
 
     const submit = async (e: { preventDefault: () => void; }) => {
@@ -34,9 +48,16 @@ export default function Chat({algo}: { algo: string }){
                 chatHistory!.scrollTop = chatHistory!.scrollHeight;
             }
             setResponse(data.answer);
-            allMessages.push(['user', message]);
-            allMessages.push(['bot', data.answer]);
+            var allMessages: Message[] = [...messages];
+            allMessages.push({q:message, a:data.answer});
             setMessages(allMessages);
+            var h: History[] = [...histories];
+            for(let i=0;i<h.length;i++){
+                if (h[i].id == historyID){
+                    h[i].chat = [...allMessages]
+                }
+                setHistories(h);
+            }
             setMessage('');
         })
         .catch(err => {
@@ -60,9 +81,13 @@ export default function Chat({algo}: { algo: string }){
                     {messages.map((message) => {
                         return (
                             <div className={'list-group-item list-group-item-action lh-tight h-fit mr-[150px]'}>
-                                <div className='grid grid-cols-1 h-tight my-2'>
-                                <div className={'lh-tight w-thight px-4 py-1 rounded-md shadow-md text-justify mx-w-{500px} '+ (message[0]==='user'? 'bg-blue place-self-end':'bg-white place-self-start')}>
-                                    <div className="col-10 mb-1 small">{message[1]}</div>
+                                <div className='grid grid-cols-1 h-tight my-[10px]'>
+                                <div className={'lh-tight w-thight px-4 py-1 rounded-md shadow-md text-justify mx-w-{500px} bg-blue place-self-end'}>
+                                    <div className="col-10 mb-1 small">{message.q}</div>
+                                </div>
+                                <div className="h-[10px]"></div>
+                                <div className={'lh-tight w-thight px-4 py-1 rounded-md shadow-md text-justify mx-w-{400px} bg-white place-self-start'}>
+                                    <div className="col-10 mb-1 small">{message.a}</div>
                                 </div>
                                 </div>
                             </div>
@@ -77,7 +102,7 @@ export default function Chat({algo}: { algo: string }){
                 <button type="submit" className="bg-slate-500 rounded-md py-1 px-2 shadow-md hover:bg-slate-600">submit</button>
             </form>
         </div>
-    
+
         </>
     )
 }
