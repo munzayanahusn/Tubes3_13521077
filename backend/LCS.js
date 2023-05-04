@@ -16,7 +16,8 @@ function lcs(pattern, text) {
     }
 
     const lcsLength = dp[m][n];
-    const ratio = lcsLength / Math.max(m, n);
+    const ratio = lcsLength / n;
+    console.log("LCS :", ratio);
 
     return ratio;
 }

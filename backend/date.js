@@ -28,7 +28,7 @@ function getDay(dateString) {
         arrayDate[i] = Number(arrayDate[i]);
     }
     // console.log("Number", arrayDate);
-    if ((arrayDate[0] < 0 || arrayDate[1] < 0 || arrayDate[1] > 12 || arrayDate[2] < 0)) {
+    if ((arrayDate[0] < 0 || arrayDate[0] > 31 || arrayDate[1] < 0 || arrayDate[1] > 12 || arrayDate[2] < 0)) {
         return "Waduh! Masukkan tanggal tidak valid.";
     }
     if ((arrayDate[1] == 4 || arrayDate[1] == 6 || arrayDate[1] == 8 || arrayDate[1] == 9 || arrayDate[1] == 11) && (arrayDate[0] > 30)) {
