@@ -19,7 +19,7 @@ let h = [
 ];
 
 app.get('/history', async (req, res) => {
-    // console.log(h);
+    // console.log("dfdf");
     await res.json({ histories: h });
 });
 

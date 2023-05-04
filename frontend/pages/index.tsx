@@ -18,7 +18,6 @@ let h2: History[] = [
   {id: 1, chat: [{q:'haiiii',a:'helledefo'},{q:'sdfsdfsd',a:'helfsdcsdlo'}]},
 ];
 
-
 export default function Home() {
   const [algo, setAlgo] = useState("KMP");
   // const [message, setMessage] = useState([] as Message[]);
@@ -26,7 +25,6 @@ export default function Home() {
   // const [histories,setHistories] = useState([] as History[]);
   const [histories,setHistories] = useState([] as History[]);
   const [historyID,setHistoryID] = useState(Number);
-
 
   async function fetchHistory(){
       const res = await fetch('http://localhost:8000/history');
@@ -47,11 +45,10 @@ export default function Home() {
     }
   };
 
-
   getHistoryFromDatabase();
   
   return (
-    <div className="App" onLoad={getHistoryFromDatabase}>
+    <div className="App">
       <Chat algo={algo} messages={messages} setMessages={setMessages} histories={histories} setHistories={setHistories} historyID={historyID} setHistoryID={setHistoryID}/>
       <Sidebar algo={algo} messages={messages} setMessages={setMessages} setAlgo={setAlgo} histories={histories} setHistories={setHistories} historyID={historyID} setHistoryID={setHistoryID}/>
     </div>
