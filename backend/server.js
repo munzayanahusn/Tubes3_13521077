@@ -23,7 +23,7 @@ app.get('/history', async (req, res) => {
     await res.json({ histories: await db.getRecentHistory() });
 });
 
-app.get('./addNewChat', async (req, res) => {
+app.get('/addNewChat', async (req, res) => {
     console.log("dsd");
     await res.json({ dummy: await addNewChat() });
 })
@@ -66,7 +66,7 @@ async function getAnswer(algo, question, historyID) {
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionKMP(arrQuest, question);
             console.log(arrQuest);
-            if (found) answer = db.getAnswer(result);
+            if (found) answer = await db.getAnswer(result);
             else answer = getTop3(result); // Top 3 question termirip
         } else if (algo == "BM") {
             arrQuest = await db.getAllQuestions();

@@ -73,7 +73,6 @@ function getAnswer(question) {
             // If an answer is found, return it
             if (results.length > 0) {
                 const answer = results[0].answer;
-                // console.log(answer);
                 resolve(answer);
             } else {
                 // If no answer is found, return an error message
