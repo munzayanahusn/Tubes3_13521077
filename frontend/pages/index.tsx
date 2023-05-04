@@ -35,11 +35,11 @@ export default function Home() {
 
   const getHistoryFromDatabase = async () => {
     try {
-      console.log("dfsdf");
+      // console.log("dfsdf");
       const res1 = await fetchHistory();
       const h: History[] = res1.histories;
       setHistories(h);
-      console.log(h)
+      // console.log(h)
     } catch (error) {
       console.error(error);
     }

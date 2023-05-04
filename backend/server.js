@@ -23,6 +23,10 @@ app.get('/history', async (req, res) => {
     await res.json({ histories: await db.getRecentHistory() });
 });
 
+app.get('./selectHistory', async (req, res) => {
+    await res.json({ dummy: await db.addHistory() });
+})
+
 app.post('/URL', async (req, res) => {
     question = req.body.isiChat
     algo = req.body.algorithm

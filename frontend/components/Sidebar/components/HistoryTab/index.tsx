@@ -31,6 +31,7 @@ export default function HistoryTab({messages, setMessages, histories,setHistorie
     }
 
     const setSelectedHistory = async (selectedID:number) => {
+        
         for(let i=0;i<histories.length;i++){
             if (histories[i].id==selectedID){
                 var h : History[] = [...histories];
