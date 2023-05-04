@@ -19,13 +19,20 @@ let h = [
 ];
 
 app.get('/history', async (req, res) => {
-    // console.log("dfdf");
+    // console.log("history");
     await res.json({ histories: await db.getRecentHistory() });
 });
 
-app.get('./selectHistory', async (req, res) => {
-    await res.json({ dummy: await db.addHistory() });
+app.get('./addNewChat', async (req, res) => {
+    console.log("dsd");
+    await res.json({ dummy: await addNewChat() });
 })
+
+async function addNewChat() {
+    console.log("fdsdf");
+    await db.addHistory();
+    return 10;
+}
 
 app.post('/URL', async (req, res) => {
     question = req.body.isiChat

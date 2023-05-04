@@ -14,8 +14,8 @@ export interface History {
 }
 
 let h2: History[] = [
-  {id: 0, chat: [{q:'halooo semuaa',a:'hello'},{q:'fsfwr',a:'hello'}]},
-  {id: 1, chat: [{q:'haiiii',a:'helledefo'},{q:'sdfsdfsd',a:'helfsdcsdlo'}]},
+  {id: 1, chat: [{q:'halooo semuaa',a:'hello'},{q:'fsfwr',a:'hello'}]},
+  {id: 2, chat: [{q:'haiiii',a:'helledefo'},{q:'sdfsdfsd',a:'helfsdcsdlo'}]},
 ];
 
 export default function Home() {
@@ -39,6 +39,7 @@ export default function Home() {
       const res1 = await fetchHistory();
       const h: History[] = res1.histories;
       setHistories(h);
+      setHistoryID(1);
       // console.log(h)
     } catch (error) {
       console.error(error);

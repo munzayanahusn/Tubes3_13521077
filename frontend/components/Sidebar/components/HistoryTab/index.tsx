@@ -16,9 +16,16 @@ import {History} from '../../../../pages/index'
 export default function HistoryTab({messages, setMessages, histories,setHistories,historyID,setHistoryID}:
     {messages:Message[],setMessages:any; histories:History[], setHistories:any,historyID:number,setHistoryID:any}){
 
+    async function fetchAddNewChat(){
+        const res = await fetch('http://localhost:8000/addNewChat');
+        const res1 = await res.json();
+        console.log(res1)
+        return res1;
+    }
 
     const addNewChat = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+        fetchAddNewChat();
         var globalHistory: any[] = [...histories];
         if(histories.length == 10){
             globalHistory.pop();
@@ -31,7 +38,7 @@ export default function HistoryTab({messages, setMessages, histories,setHistorie
     }
 
     const setSelectedHistory = async (selectedID:number) => {
-        
+        fetchAddNewChat();
         for(let i=0;i<histories.length;i++){
             if (histories[i].id==selectedID){
                 var h : History[] = [...histories];
