@@ -32,10 +32,24 @@ async function getAnswer(algo, question) {
     alg = reg.get_algo(question);
     if (alg == "Calculator") {
         return cal.calculate(question);
-    } else if (alg = "Date") {
+    } else if (alg == "Date") {
         return dat.getDay(question);
-    } else if (alg = "Search") {
-        return "Search";
+    } else if (alg == "Search") {
+        if (algo == "KMP") {
+            //arrQuest = await db.getAllQuestions();
+            //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
+            [found, result] = search.searchQuestionKMP(arrQuest, question);
+            if (found) return result;
+            else return result; // Top 3 question termirip
+        } else if (algo == "BM") {
+            //arrQuest = await db.getAllQuestions();
+            arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
+            [found, result] = search.searchQuestionBM(arrQuest, question);
+            if (found) return result;//db.getAnswer(result);
+            else return result; // Top 3 question termirip
+        }
+    } else {
+        return "Ge kedetect";
     }
 }
 

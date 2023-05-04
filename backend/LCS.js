@@ -1,3 +1,5 @@
+module.exports = { lcs };
+
 function lcs(pattern, text) {
     const m = pattern.length;
     const n = text.length;

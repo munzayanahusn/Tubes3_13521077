@@ -8,13 +8,13 @@ const FastPriorityQueue = require('fastpriorityqueue');
 const prioRatio = new FastPriorityQueue((a, b) => a[0] > b[0]);
 
 function searchQuestionKMP(arrtext, pattern) {
-    found = False;
+    found = false;
     for (let i = 0; i < arrtext.length && !found; i++) {
-        result = km.kmpSearch(pattern, arrtext[i]);
+        result = kmp.kmpSearch(pattern, arrtext[i]);
         if (result != -1) {
             // Exact match
             found = true;
-            return found, arrtext[i];
+            return [found, arrtext[i]];
         }
     }
     if (!found) {
@@ -23,7 +23,7 @@ function searchQuestionKMP(arrtext, pattern) {
             ratio = lc.lcs(pattern, arrtext[i]);
             if (ratio >= 0.9) {
                 found = true;
-                return found, arrtext[i];
+                return [found, arrtext[i]];
             } else {
                 prioRatio.add([ratio, arrtext[i]]);
             }
@@ -32,21 +32,21 @@ function searchQuestionKMP(arrtext, pattern) {
     if (!found) {
         top3 = ['', '', ''];
         for (let i = 0; i < 3; i++) {
-            [priority, value] = pq.poll();
+            [priority, value] = prioRatio.poll();
             top3[i] = value;
         }
-        return found, top3;
+        return [found, top3];
     }
 }
 
 function searchQuestionBM(arrtext, pattern) {
-    found = False;
+    found = false;
     for (let i = 0; i < arrtext.length && !found; i++) {
         result = bm.bmSearch(pattern, arrtext[i]);
         if (result == 0) {
             // Exact match
             found = true;
-            return found, arrtext[i];
+            return [found, arrtext[i]];
         }
     }
     if (!found) {
@@ -55,7 +55,7 @@ function searchQuestionBM(arrtext, pattern) {
             ratio = lc.lcs(pattern, arrtext[i]);
             if (ratio >= 0.9) {
                 found = true;
-                return found, arrtext[i];
+                return [found, arrtext[i]];
             } else {
                 prioRatio.add([ratio, arrtext[i]]);
             }
@@ -64,13 +64,18 @@ function searchQuestionBM(arrtext, pattern) {
     if (!found) {
         top3 = ['', '', ''];
         for (let i = 0; i < 3; i++) {
-            [priority, value] = pq.poll();
+            [priority, value] = prioRatio.poll();
             top3[i] = value;
         }
-        return found, top3;
+        return [found, top3];
     }
 }
 
+/*
+arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
+[a, b] = searchQuestionKMP(arrQuest, "hai");
+console.log(a); console.log(b);
+*/
 
 /*
 const FastPriorityQueue = require('fastpriorityqueue');
