@@ -22,3 +22,5 @@ function get_algo(question) {
         return "Search";
     }
 }
+
+module.exports= get_algo;
