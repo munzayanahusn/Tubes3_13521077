@@ -6,7 +6,7 @@ export interface Message {
     q:string; a:string;
 }
 
-let message1 : Message[] = [{q:"halo semuaaa",a:"haiiiii"},{q:"kenapaa",a:"haiiiii"}];
+let message1 : Message[] = [];
 
 export interface History {
   id: number;
