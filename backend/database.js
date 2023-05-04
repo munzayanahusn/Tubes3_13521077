@@ -242,27 +242,27 @@ function getRecentHistory() {
 // Call main to test
 // main();
 
-async function main() {
-    try {
-    //   // Add some test data to the database
-    //   await addHistory("What is your name?", "My name is ChatGPT");
-    //   await addQAndARow(1, "What is your age?", "I don't have an age, I'm a computer program");
-    //   await addQAndARow(1, "What can you do?", "I can answer your questions and have conversations with you");
+// async function main() {
+//     try {
+//     //   // Add some test data to the database
+//     //   await addHistory("What is your name?", "My name is ChatGPT");
+//     //   await addQAndARow(1, "What is your age?", "I don't have an age, I'm a computer program");
+//     //   await addQAndARow(1, "What can you do?", "I can answer your questions and have conversations with you");
   
-      // Retrieve the 10 most recent history items and their q_and_a rows
-      const recentHistory = await getRecentHistory();
+//       // Retrieve the 10 most recent history items and their q_and_a rows
+//       const recentHistory = await getRecentHistory();
   
-      // Log the results to the console
-      console.log(recentHistory);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      // Close the database connection
-      connection.end();
-    }
-  }
+//       // Log the results to the console
+//       console.log(recentHistory);
+//     } catch (error) {
+//       console.error(error);
+//     } finally {
+//       // Close the database connection
+//       connection.end();
+//     }
+//   }
   
-  main();  
+//   main();  
 
 module.exports = {
   addQuestion,
