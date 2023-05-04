@@ -65,20 +65,21 @@ async function getAnswer(algo, question, historyID) {
             arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionKMP(arrQuest, question);
-            console.log(arrQuest);
+            // console.log(arrQuest);
             if (found) answer = await db.getAnswer(result);
             else answer = getTop3(result); // Top 3 question termirip
         } else if (algo == "BM") {
             arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionBM(arrQuest, question);
-            if (found) answer = db.getAnswer(result);//db.getAnswer(result);
+            if (found) answer = await db.getAnswer(result);//db.getAnswer(result);
             else answer = getTop3(result); // Top 3 question termirip
         }
     } else {
         answer = "Ge kedetect";
     }
-    db.addQAndARow(historyID, question, answer)
+    // console.log(historyID, question, answer);
+    db.addQAndARow(historyID, question, answer);
     return answer;
 }
 

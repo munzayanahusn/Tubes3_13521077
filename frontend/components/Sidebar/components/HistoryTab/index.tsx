@@ -38,7 +38,7 @@ export default function HistoryTab({messages, setMessages, histories,setHistorie
     }
 
     const setSelectedHistory = async (selectedID:number) => {
-        fetchAddNewChat();
+        // fetchAddNewChat();
         for(let i=0;i<histories.length;i++){
             if (histories[i].id==selectedID){
                 var h : History[] = [...histories];
@@ -46,6 +46,7 @@ export default function HistoryTab({messages, setMessages, histories,setHistorie
             }
         }
         setHistoryID(selectedID);
+        // console.log(historyID);
     }
 
 
