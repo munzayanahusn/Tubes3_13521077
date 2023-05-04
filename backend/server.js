@@ -13,9 +13,15 @@ app.use(express.json());
 
 var question = ""
 
-// app.get('/history', (req, res) => {
-//     res.json({ history: "Hello from server!" });
-// });
+let h = [
+    {id: 0, chat: [{q:'bangunnnnnnn',a:'hello'},{q:'fsfwr',a:'hello'}]},
+    {id: 1, chat: [{q:'haiiii',a:'helledefo'},{q:'sdfsdfsd',a:'helfsdcsdlo'}]},
+];
+
+app.get('/history', async (req, res) => {
+    console.log(h);
+    await res.json({ histories: h});
+});
 
 app.post('/URL', async (req, res) => {
     question = req.body.isiChat
