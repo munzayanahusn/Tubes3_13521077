@@ -167,6 +167,62 @@ function getHistoryById(id) {
     });
 }
 
+function getRecentHistory() {
+    return new Promise((resolve, reject) => {
+        // Query to get the 10 most recent histories
+        const query = `
+            SELECT history.id, q_and_a.id as qa_id, q_and_a.question_text, q_and_a.answer_text
+            FROM history
+            LEFT JOIN q_and_a ON history.id = q_and_a.history_id
+            ORDER BY history.id DESC, qa_id ASC
+            LIMIT 10
+        `;
+    
+        // Run the query
+        connection.query(query, (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                // Create a map to store the history objects
+                const historyMap = new Map();
+        
+                // Loop through the results of the query
+                for (let i = 0; i < results.length; i++) {
+                    const row = results[i];
+        
+                    // If the current row does not have a history ID, skip it
+                    if (!row.id) {
+                        continue;
+                    }
+        
+                    // If the history object does not exist in the map, create it
+                    if (!historyMap.has(row.id)) {
+                        historyMap.set(row.id, {
+                            id: row.id,
+                            chat: []
+                        });
+                    }
+        
+                    // If the current row has a question, add it to the chat for the current history object
+                    if (row.question_text) {
+                        const question = {
+                            question_text: row.question_text,
+                            answer_text: row.answer_text
+                        };
+                        historyMap.get(row.id).chat.push(question);
+                    }
+                }
+    
+                // Convert the map to an array of history objects
+                const historyArray = Array.from(historyMap.values());
+        
+                resolve(historyArray);
+            }
+        });
+    });
+  }
+  
+
 
 // Example of use
 // async function main() {
@@ -202,6 +258,28 @@ function getHistoryById(id) {
 // Call main to test
 // main();
 
+// async function main() {
+//     try {
+//       // Add some test data to the database
+//       await addHistory("What is your name?", "My name is ChatGPT");
+//       await addQAndARow(1, "What is your age?", "I don't have an age, I'm a computer program");
+//       await addQAndARow(1, "What can you do?", "I can answer your questions and have conversations with you");
+  
+//       // Retrieve the 10 most recent history items and their q_and_a rows
+//       const recentHistory = await getRecentHistory();
+  
+//       // Log the results to the console
+//       console.log(recentHistory);
+//     } catch (error) {
+//       console.error(error);
+//     } finally {
+//       // Close the database connection
+//       connection.end();
+//     }
+//   }
+  
+//   main();  
+
 module.exports = {
   addQuestion,
   deleteQuestion,
@@ -209,5 +287,6 @@ module.exports = {
   getAllQuestions,
   addHistory,
   addQAndARow,
-  getHistoryById
+  getHistoryById,
+  getRecentHistory
 };
