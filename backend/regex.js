@@ -10,7 +10,9 @@ const add_question_regex = /^Tambah pertanyaan\s.+ dengan jawaban\s.+$/i;
 const delete_question_regex = /^Hapus pertanyaan/i;
 
 function get_algo(question) {
-    if (calculator_mode_regex.test(question)) {
+    if (date_regex.test(question)) {
+        return "Date";
+    } else if (calculator_mode_regex.test(question)) {
         return "Calculator";
     } else if (date_regex.test(question)) {
         return "Date";
