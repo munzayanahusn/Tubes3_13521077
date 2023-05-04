@@ -198,3 +198,13 @@ function getHistoryById(id) {
 
 // Call main to test
 // main();
+
+module.exports = {
+  addQuestion,
+  deleteQuestion,
+  getAnswer,
+  getAllQuestions,
+  addHistory,
+  addQAndARow,
+  getHistoryById
+};
