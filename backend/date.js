@@ -1,4 +1,5 @@
 // Input output 
+/*
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -17,6 +18,7 @@ function inputDate() {
         }
     });
 }
+*/
 
 function getDay(dateString) {
     arrayDate = dateString.split(/\D+/);
@@ -74,7 +76,7 @@ function calculateDay(differenceDay) {
     return day[differenceDay % 7];
 }
 
-inputDate();
+//inputDate();
 
 
 
