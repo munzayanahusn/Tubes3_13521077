@@ -20,7 +20,7 @@ let h = [
 
 app.get('/history', async (req, res) => {
     // console.log("dfdf");
-    await res.json({ histories: h });
+    await res.json({ histories: await db.getRecentHistory() });
 });
 
 app.post('/URL', async (req, res) => {
