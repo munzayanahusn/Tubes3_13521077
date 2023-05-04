@@ -37,7 +37,7 @@ export default function Chat({algo,messages,setMessages,histories,setHistories,h
         await fetch('http://localhost:8000/URL', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ algorithm: algo, isiChat: message })
+            body: JSON.stringify({ historyID: historyID, algorithm: algo, isiChat: message })
         })
         .then(res => {
             if (res.ok) {
@@ -62,10 +62,41 @@ export default function Chat({algo,messages,setMessages,histories,setHistories,h
             }
             setMessage('');
         })
-        // .catch(err => {
-        //   console.log(err);
-        // });
+        .catch(err => {
+          console.log(err);
+        });
     }
+
+    // async function fetchAnswer(){
+    //     const res = await fetch('http://localhost:8000/history',
+    //         {method:'POST',
+    //          headers: {'Content-Type': 'application/json'},
+    //          body: JSON.stringify({ algorithm: algo, isiChat: message })
+    //     });
+    //     const res1 = await res.json();
+    //     return res1;
+    // }
+
+    // const submit = async (e: { preventDefault: () => void; }) => {
+    //     e.preventDefault;
+    //     try {
+    //         const res1 = await fetchAnswer();
+    //         setResponse(res1.answer);
+    //         var allMessages: Message[] = [...messages];
+    //         allMessages.push({q:message, a:res1.answer});
+    //         setMessages(allMessages);
+    //         var h: History[] = [...histories];
+    //         for(let i=0;i<h.length;i++){
+    //             if (h[i].id == historyID){
+    //                 h[i].chat = [...allMessages]
+    //             }
+    //             setHistories(h);
+    //         }
+    //         setMessage('');
+    //     }  catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     
     const goToBottom = async (e: { preventDefault: () => void; }) => {

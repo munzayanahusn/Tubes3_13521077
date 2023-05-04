@@ -26,14 +26,15 @@ app.get('/history', async (req, res) => {
 app.post('/URL', async (req, res) => {
     question = req.body.isiChat
     algo = req.body.algorithm
-    res.json({ answer: await getAnswer(algo, question) });
+    historyID = req.body.historyID
+    res.json({ answer: await getAnswer(algo, question,historyID) });
 });
 
 app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
 });
 
-async function getAnswer(algo, question) {
+async function getAnswer(algo, question, historyID) {
     arrQuest = await db.getAllQuestions();
     alg = reg.get_algo(question);
     if (alg == "Calculator") {
