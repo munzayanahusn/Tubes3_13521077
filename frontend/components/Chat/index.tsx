@@ -85,11 +85,11 @@ export default function Chat({algo,messages,setMessages,histories,setHistories,h
                             <div className={'list-group-item list-group-item-action lh-tight h-fit mr-[150px]'}>
                                 <div className='grid grid-cols-1 h-tight my-[10px]'>
                                 <div className={'lh-tight w-thight px-4 py-1 rounded-md shadow-md text-justify mx-w-{500px} bg-blue place-self-end'}>
-                                    <div className="col-10 mb-1 small">{m.q}</div>
+                                    <div className="col-10 mb-1 small text-black">{m.q}</div>
                                 </div>
                                 <div className="h-[10px]"></div>
                                 <div className={'lh-tight w-thight px-4 py-1 rounded-md shadow-md text-justify mx-w-{400px} bg-white place-self-start'}>
-                                    <div className="col-10 mb-1 small">{m.a}</div>
+                                    <div className="col-10 mb-1 small text-black">{m.a}</div>
                                 </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@ export default function Chat({algo,messages,setMessages,histories,setHistories,h
             <form className="h-[65px]" onSubmit={submit}>
                 <label></label>
                 <input className="h-[40px] w-[650px] mx-5 rounded-md shadow-md" type="text" id="chat" value={message} onChange={e=> setMessage(e.target.value)}/>
-                <button type="submit" className="bg-slate-500 rounded-md py-1 px-2 shadow-md hover:bg-slate-600">submit</button>
+                <button type="submit" className="bg-slate-500 rounded-md text-black py-1 px-2 shadow-md hover:bg-slate-600">submit</button>
             </form>
         </div>
 
