@@ -27,14 +27,17 @@ app.listen(8000, () => {
 async function getAnswer(algo, question) {
     if (algo == "KMP") {
         arrQuest = await db.getAllQuestions();
-        return question + "-KMP answer" // searchQuestionKMP(arrQuest, question)
+        found, result = searchQuestionKMP(arrQuest, question);
+        if (found) return db.getAnswer(result);
+        else return result; // Top 3 question termirip
     } else if (algo == "BM") {
         arrQuest = await db.getAllQuestions();
-        return question + "- BM answer" // searchQuestionBM(arrQuest, question)
+        found, result = searchQuestionBM(arrQuest, question);
+        if (found) return db.getAnswer(result);
+        else return result; // Top 3 question termirip
     } else if (algo == "Date") {
         return getDay(question);
     } else if (algo == "Calculator") {
         return calculate(question);
     }
 }
-

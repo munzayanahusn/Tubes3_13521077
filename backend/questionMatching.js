@@ -8,7 +8,7 @@ function searchQuestionKMP(arrtext, pattern) {
         if (result != -1) {
             // Exact match
             found = true;
-            return arrtext[i];
+            return found, arrtext[i];
         }
     }
     if (!found) {
@@ -17,7 +17,7 @@ function searchQuestionKMP(arrtext, pattern) {
             ratio = lcs(pattern, arrtext[i]);
             if (ratio >= 0.9) {
                 found = true;
-                return arrtext[i];
+                return found, arrtext[i];
             } else {
                 prioRatio.add([ratio, arrtext[i]]);
             }
@@ -29,7 +29,7 @@ function searchQuestionKMP(arrtext, pattern) {
             [priority, value] = pq.poll();
             top3[i] = value;
         }
-        return top3;
+        return found, top3;
     }
 }
 
@@ -40,7 +40,7 @@ function searchQuestionBM(arrtext, pattern) {
         if (result == 0) {
             // Exact match
             found = true;
-            return arrtext[i];
+            return found, arrtext[i];
         }
     }
     if (!found) {
@@ -49,7 +49,7 @@ function searchQuestionBM(arrtext, pattern) {
             ratio = lcs(pattern, arrtext[i]);
             if (ratio >= 0.9) {
                 found = true;
-                return arrtext[i];
+                return found, arrtext[i];
             } else {
                 prioRatio.add([ratio, arrtext[i]]);
             }
@@ -61,7 +61,7 @@ function searchQuestionBM(arrtext, pattern) {
             [priority, value] = pq.poll();
             top3[i] = value;
         }
-        return top3;
+        return found, top3;
     }
 }
 
