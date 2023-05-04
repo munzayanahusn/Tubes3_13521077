@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const db = require('./database');
@@ -18,10 +17,10 @@ var question = ""
 //     res.json({ history: "Hello from server!" });
 // });
 
-app.post('/URL', async (req, res) => {
+app.post('/URL', (req, res) => {
     question = req.body.isiChat
     algo = req.body.algorithm
-    res.json({ answer: await getAnswer(algo, question) });
+    res.json({ answer: getAnswer(algo, question) });
 });
 
 app.listen(8000, () => {
