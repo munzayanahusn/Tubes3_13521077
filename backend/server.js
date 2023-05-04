@@ -53,12 +53,12 @@ async function getAnswer(algo, question, historyID) {
     } else if (alg == "Date") {
         answer = dat.getDay(question);
     } else if (alg == "Add Question") {
-        const match = str.match(/Tambah pertanyaan (.*) dengan jawaban (.*)/i);
+        const match = question.match(/Tambah pertanyaan (.*) dengan jawaban (.*)/i);
         const x = match[1];
         const y = match[2];
         answer = await db.addQuestion(x, y);
     } else if (alg == "Delete Question") {
-        const x = str.match(/Hapus pertanyaan (.*)/i)[1];
+        const x = question.match(/Hapus pertanyaan (.*)/i)[1];
         answer = await db.deleteQuestion(x);
     } else if (alg == "Search") {
         if (algo == "KMP") {

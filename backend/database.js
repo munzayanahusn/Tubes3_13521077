@@ -26,7 +26,7 @@ function addQuestion(question, answer) {
                           (error, results) => {
                               if (error) reject(error);
                             //   console.log('Answer updated for question:', question);
-                              resolve('Pertanyaan ', question, ' sudah ada! Jawaban di-update ke ', answer);
+                              resolve('Pertanyaan '+ question + ' sudah ada! Jawaban di-update ke ' + answer);
                           }
                       );
                   } // If the question doesn't exist, add a new question and answer
@@ -37,7 +37,7 @@ function addQuestion(question, answer) {
                           (error, results) => {
                               if (error) reject(error);
                             //   console.log('Question added to database:', question);
-                              resolve('Pertanyaan ', question, ' telah ditambah');
+                              resolve('Pertanyaan '+ question +' telah ditambah');
                           }
                       );
                   }
@@ -53,9 +53,9 @@ function deleteQuestion(question) {
             if (err) reject(err);
             // console.log(`${result.affectedRows} question(s) deleted from database!`);
             if (result.affectedRows == 0) {
-                resolve('Tidak ada pertanyaan ', question, ' pada database!');
+                resolve('Tidak ada pertanyaan '+ question + ' pada database!');
             }
-            resolve('Pertanyaan ', question, ' telah dihapus');
+            resolve('Pertanyaan '+ question + ' telah dihapus');
         });
     });
 }
