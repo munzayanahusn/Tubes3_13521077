@@ -35,7 +35,6 @@ function bmSearch(pattern, text) {
             i = pattern.length - 1;
             j += shift > 0 ? shift : pattern.length;
         }
-        console.log("Masuk BMSearch", idx, j, text.length);
     }
 
     // Pattern not found in text
