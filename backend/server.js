@@ -38,7 +38,7 @@ app.post('/URL', async (req, res) => {
     question = req.body.isiChat
     algo = req.body.algorithm
     historyID = req.body.historyID
-    res.json({ answer: await getAnswer(algo, question,historyID) });
+    res.json({ answer: await getAnswer(algo, question, historyID) });
 });
 
 app.listen(8000, () => {
@@ -68,7 +68,7 @@ async function getAnswer(algo, question, historyID) {
             // console.log(arrQuest);
             if (found) answer = await db.getAnswer(result);
             else answer = getTop3(result); // Top 3 question termirip
-        } else if (algo == "BM") {
+        } else if (algo == "Boyer-Moore") {
             arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionBM(arrQuest, question);
