@@ -1,6 +1,7 @@
 module.exports = { calculate }
 
 function calculate(expression) {
+    expression = expression.replace(/\s/g, '');
     if (!validateCalculation(expression)) return "Masukkan ekspresi tidak valid";
     const operands = [];
     const operators = [];
