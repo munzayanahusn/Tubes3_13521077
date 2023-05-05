@@ -18,7 +18,7 @@ function bmSearch(pattern, text) {
     let j = pattern.length - 1; // Text index
 
     // Loop to match pattern with text
-    do {
+    while (j <= text.length - 1) {
         if (pattern[i] === text[j]) {
             if (i === 0) {
                 // Pattern found
@@ -31,11 +31,12 @@ function bmSearch(pattern, text) {
         } else {
             // character jump technique
             const lastOc = loFunc[text.charCodeAt(j)];
-            const shift = i - (lastOc === -1 ? -1 : lastOc);
+            const shift = i - lastOc;
             i = pattern.length - 1;
             j += shift > 0 ? shift : pattern.length;
         }
-    } while (j <= text.length - 1);
+        console.log("Masuk BMSearch", idx, j, text.length);
+    }
 
     // Pattern not found in text
     return -1;
