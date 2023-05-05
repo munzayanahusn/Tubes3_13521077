@@ -11,7 +11,7 @@ function bmSearch(pattern, text) {
 
     let i = pattern.length - 1; // Pattern index
     if (i > text.length - 1 || i < 0) {
-        // Pattern longer than text, pattern not found
+        // Pattern longer than text,pattern not found
         return -1;
     }
 
