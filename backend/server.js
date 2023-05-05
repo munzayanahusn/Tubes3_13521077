@@ -72,6 +72,7 @@ async function getAnswer(algo, question, historyID) {
             arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionBM(arrQuest, question);
+            console.log("keluar BM", result);
             // console.log(arrQuest);
             if (found) answer = await db.getAnswer(result);
             else answer = getTop3(result); // Top 3 question termirip

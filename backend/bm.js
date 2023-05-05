@@ -1,6 +1,7 @@
 module.exports = { bmSearch };
 
 function bmSearch(pattern, text) {
+    console.log("Masuk BMSearch");
     // Convert pattern and text to lowercase
     pattern = pattern.toLowerCase();
     text = text.toLowerCase();
@@ -9,7 +10,7 @@ function bmSearch(pattern, text) {
     const loFunc = lastOccurrence(pattern);
 
     let i = pattern.length - 1; // Pattern index
-    if (i > text.pattern - 1) {
+    if (i > text.length - 1 || i < 0) {
         // Pattern longer than text, pattern not found
         return -1;
     }
@@ -30,11 +31,11 @@ function bmSearch(pattern, text) {
         } else {
             // character jump technique
             const lastOc = loFunc[text.charCodeAt(j)];
-            const shift = i - lastOc;
+            const shift = i - (lastOc === -1 ? -1 : lastOc);
             i = pattern.length - 1;
             j += shift > 0 ? shift : pattern.length;
         }
-    } while (i <= text.length - 1);
+    } while (j <= text.length - 1);
 
     // Pattern not found in text
     return -1;
@@ -52,8 +53,8 @@ function lastOccurrence(pattern) {
 }
 
 /*
-const pattern = "ab";
+const pattern = "ak";
 const text = "aaakdakabab";
 
-console.log(bmSearch(pattern, text)); // Output: 5
+console.log(bmSearch(pattern, text));
 */

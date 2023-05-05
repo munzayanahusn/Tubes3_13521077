@@ -45,7 +45,7 @@ function searchQuestionBM(arrtext, pattern) {
     found = false;
     for (let i = 0; i < arrtext.length && !found; i++) {
         result = bm.bmSearch(pattern, arrtext[i]);
-        if (result == 0) {
+        if (result != -1) {
             // Exact match
             found = true;
             return [found, arrtext[i]];

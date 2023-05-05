@@ -24,7 +24,7 @@ function lcs(pattern, text) {
     const lcsLength = dp[m][n];
     // Ratio compare to text
     const ratio = lcsLength / n;
-    console.log("LCS :", ratio);
+    //console.log("LCS :", ratio);
 
     return ratio;
 }
