@@ -28,7 +28,8 @@ function calculate(expression) {
                         const operand2 = operands.pop();
                         const operand1 = operands.pop();
                         const result = evaluate(operand1, operand2, operator);
-                        operands.push(result);
+                        if (result === "Pembagian dengan nol tidak valid") return "Pembagian dengan nol tidak valid";
+                        else operands.push(result);
                     }
                     operators.pop();
                     break;
@@ -43,7 +44,8 @@ function calculate(expression) {
                         const operand2 = operands.pop();
                         const operand1 = operands.pop();
                         const result = evaluate(operand1, operand2, operator);
-                        operands.push(result);
+                        if (result === "Pembagian dengan nol tidak valid") return "Pembagian dengan nol tidak valid";
+                        else operands.push(result);
                     }
                     operators.push(token);
                     break;
@@ -60,7 +62,8 @@ function calculate(expression) {
         const operand2 = operands.pop();
         const operand1 = operands.pop();
         const result = evaluate(operand1, operand2, operator);
-        operands.push(result);
+        if (result === "Pembagian dengan nol tidak valid") return "Pembagian dengan nol tidak valid";
+        else operands.push(result);
     }
 
     // Calculation result is the last number in the operands
@@ -88,7 +91,8 @@ function evaluate(operand1, operand2, operator) {
         case '*':
             return operand1 * operand2;
         case '/':
-            return operand1 / operand2;
+            if (operand2 === 0) return "Pembagian dengan nol tidak valid";
+            else return operand1 / operand2;
         default:
             throw new Error('Invalid operator');
     }
