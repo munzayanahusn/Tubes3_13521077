@@ -9,7 +9,7 @@ function calculate(expression) {
     const operators = [];
 
     // Split number and math symbol (+ - * /)
-    const tokens = expression.match(/\d+|\+|\-|\*|\//g);
+    const tokens = expression.match(/\d+|\+|\-|\*|\/|\(|\)/g);
 
     tokens.forEach(token => {
         if (!isNaN(token)) {
