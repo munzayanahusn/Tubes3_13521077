@@ -30,6 +30,8 @@ function searchQuestionKMP(arrtext, pattern) {
         }
     }
     if (!found) {
+        // There are no questions with minimum 0.9 similarity,
+        // return 3 questions most similar to the pattern
         top3 = ['', '', ''];
         for (let i = 0; i < 3; i++) {
             [priority, value] = prioRatio.poll();
@@ -62,6 +64,8 @@ function searchQuestionBM(arrtext, pattern) {
         }
     }
     if (!found) {
+        // There are no questions with minimum 0.9 similarity,
+        // return 3 questions most similar to the pattern
         top3 = ['', '', ''];
         for (let i = 0; i < 3; i++) {
             [priority, value] = prioRatio.poll();
@@ -70,27 +74,3 @@ function searchQuestionBM(arrtext, pattern) {
         return [found, top3];
     }
 }
-
-/*
-arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
-[a, b] = searchQuestionKMP(arrQuest, "hai");
-console.log(a); console.log(b);
-*/
-
-/*
-const FastPriorityQueue = require('fastpriorityqueue');
-
-// Inisialisasi priority queue
-const pq = new FastPriorityQueue((a, b) => a[0] > b[0]);
-
-// Tambahkan elemen ke dalam priority queue
-pq.add([2.5, 'apple']);
-pq.add([4.2, 'banana']);
-pq.add([3.1, 'orange']);
-
-// Tampilkan elemen-elemen pada priority queue
-while (!pq.isEmpty()) {
-  const [priority, value] = pq.poll();
-  console.log(`${value} (${priority})`);
-}
-*/
