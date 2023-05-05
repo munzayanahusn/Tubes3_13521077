@@ -56,9 +56,9 @@ export default function HistoryTab({messages, setMessages, histories,setHistorie
         <button className="fixed left-[20px] top-[60px] h-[40px] w-[310px] shadow-inner rounded-xl bg-dark text-white hover:bg-slate-700" onClick={addNewChat}>+ New Chat</button>
         <div className='fixed top-[110px] flex flex-col h-[450px] w-[350px]'>
             <div className={'list-group-item list-group-item-action lh-tight h-fit'}>
-                {histories.map((history) => {
+                {histories.map((history,index) => {
                     return (
-                            <div className='grid grid-cols-1 h-tight'>
+                            <div className='grid grid-cols-1 h-tight' key={index}>
                                 <button className={'w-[350px] h-[40px] truncate text-white hover:bg-slate-500 text-start px-6 '+ (historyID==history.id? 'bg-gray-700':'')} onClick={() => {setSelectedHistory(history.id)}}>
                                 {history.chat.length==0?"new chat":history.chat[0].q}</button>
                             </div>
