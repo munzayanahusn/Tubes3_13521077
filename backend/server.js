@@ -68,11 +68,12 @@ async function getAnswer(algo, question, historyID) {
             // console.log(arrQuest);
             if (found) answer = await db.getAnswer(result);
             else answer = getTop3(result); // Top 3 question termirip
-        } else if (algo == "Boyer-Moore") {
+        } else if (algo == "BM") {
             arrQuest = await db.getAllQuestions();
             //arrQuest = ["Apa kabar", "Aku mau makan dulu", "Belom beli makan"];
             [found, result] = search.searchQuestionBM(arrQuest, question);
-            if (found) answer = await db.getAnswer(result);//db.getAnswer(result);
+            // console.log(arrQuest);
+            if (found) answer = await db.getAnswer(result);
             else answer = getTop3(result); // Top 3 question termirip
         }
     } else {
