@@ -110,7 +110,7 @@ function validateCalculation(expression) {
             // Operator : check if the previous and next characters are digits
             const prevChar = expression[i - 1];
             const nextChar = expression[i + 1];
-            if (!digits.includes(prevChar) || !digits.includes(nextChar)) {
+            if (operators.includes(prevChar) || operators.includes(nextChar) || prevChar === '(' || nextChar === ')') {
                 return false;
             }
         } else if (parentheses.includes(char)) {
