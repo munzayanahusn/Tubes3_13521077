@@ -39,7 +39,8 @@ atau ketikkan `cd frontend` <br>
 
 ## Screenshot Program
 
-<img src="./program.png">
+![image](https://user-images.githubusercontent.com/92701179/236514295-a88471ea-486b-45fd-9976-34382710f220.png)
+
 
 ## Kontributor
 
