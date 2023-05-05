@@ -27,12 +27,15 @@ GPTkw adalah aplikasi ChatGPT sederhana dengan mengaplikasikan pendekatan Questi
 1. Buka terminal baru pada repository <br>
 2. Pindahkan directory terminal ke folder backend <br>
 atau ketikkan `cd backend` <br>
-3. Masukkan perintah `npm run dev` pada terminal untuk menjalankan program backend
-4. Buka terminal baru pada repository <br>
-5. Pindahkan directory terminal ke folder frontend <br>
+3. Pastikan port :8000 sedang tidak terpakai<br>
+Lakukan pengecekan dengan mengetikkan `netstat -ano | findstr :8000`.<br>
+Anda dapat melakukan terminate program pada port tersebut dengan mengetikkan `taskkill /pid <Process_ID> /F`
+4. Masukkan perintah `npm run dev` pada terminal untuk menjalankan program backend
+5. Buka terminal baru pada repository <br>
+6. Pindahkan directory terminal ke folder frontend <br>
 atau ketikkan `cd frontend` <br>
-6. Masukkan perintah `npm run dev` pada terminal untuk menjalankan program backend
-7. Buka program dengan meng-klik URL yang muncul pada terminal frontend
+7. Masukkan perintah `npm run dev` pada terminal untuk menjalankan program backend
+8. Buka program dengan meng-klik URL yang muncul pada terminal frontend
 
 ## Screenshot Program
 
