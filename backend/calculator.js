@@ -3,6 +3,9 @@ module.exports = { calculate }
 function calculate(expression) {
     // Delete space
     expression = expression.replace(/\s/g, '');
+    if (expression[expression.length - 1] === '?') {
+        expression = expression.slice(0, -1);
+    }
     // Validate expression
     if (!validateCalculation(expression)) return "Masukkan ekspresi tidak valid";
     const operands = [];

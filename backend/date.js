@@ -1,6 +1,11 @@
 module.exports = { getDay }
 
 function getDay(dateString) {
+    // Delete space
+    dateString = dateString.replace(/\s/g, '');
+    if (dateString[dateString.length - 1] === '?') {
+        dateString = dateString.slice(0, -1);
+    }
     // Split date, month, year separated by non-number characters
     arrayDate = dateString.split(/\D+/);
     // Convert string to number
