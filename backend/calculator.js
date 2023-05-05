@@ -1,7 +1,9 @@
 module.exports = { calculate }
 
 function calculate(expression) {
+    // Delete space
     expression = expression.replace(/\s/g, '');
+    // Validate expression
     if (!validateCalculation(expression)) return "Masukkan ekspresi tidak valid";
     const operands = [];
     const operators = [];
@@ -11,13 +13,16 @@ function calculate(expression) {
 
     tokens.forEach(token => {
         if (!isNaN(token)) {
+            // Add number/operand to array  operands
             operands.push(Number(token));
         } else {
             switch (token) {
                 case '(':
+                    // ( found, add to array operators
                     operators.push(token);
                     break;
                 case ')':
+                    // ) found, calculate expression until ( found
                     while (operators[operators.length - 1] !== '(') {
                         const operator = operators.pop();
                         const operand2 = operands.pop();
@@ -27,10 +32,12 @@ function calculate(expression) {
                     }
                     operators.pop();
                     break;
-                case '+':
-                case '-':
                 case '*':
                 case '/':
+                case '+':
+                case '-':
+                    // Check if any previous operators have precedence >= current operator. 
+                    // If true, calculate the previous operator first and push result to operands.
                     while (operators.length > 0 && getPrecedence(operators[operators.length - 1]) >= getPrecedence(token)) {
                         const operator = operators.pop();
                         const operand2 = operands.pop();
@@ -46,6 +53,8 @@ function calculate(expression) {
         }
     });
 
+    // Finish reading expression, calculate all remaining operations
+    // Push back calculation results on operands
     while (operators.length > 0) {
         const operator = operators.pop();
         const operand2 = operands.pop();
@@ -54,23 +63,23 @@ function calculate(expression) {
         operands.push(result);
     }
 
+    // Calculation result is the last number in the operands
     return operands.pop();
 }
 
 function getPrecedence(operator) {
-    switch (operator) {
-        case '+':
-        case '-':
-            return 1;
-        case '*':
-        case '/':
-            return 2;
-        default:
-            return 0;
+    // Determine the priority of calculation on each operator
+    if (operator == '+' || operator == '-') {
+        return 1;
+    } else if (operator == '*' || operator == '/') {
+        return 2;
+    } else {
+        return 0;
     }
 }
 
 function evaluate(operand1, operand2, operator) {
+    // Determine the calculation results
     switch (operator) {
         case '+':
             return operand1 + operand2;
@@ -95,66 +104,37 @@ function validateCalculation(expression) {
         const char = expression[i];
 
         if (digits.includes(char)) {
-            // if it's a digit, continue to the next character
+            // Digit
             continue;
         } else if (operators.includes(char)) {
-            // if it's an operator, check if the previous and next characters are digits
+            // Operator : check if the previous and next characters are digits
             const prevChar = expression[i - 1];
             const nextChar = expression[i + 1];
             if (!digits.includes(prevChar) || !digits.includes(nextChar)) {
                 return false;
             }
         } else if (parentheses.includes(char)) {
-            // if it's a parenthesis, add it to the stack
             if (char === '(') {
+                // if it's an opening parenthesis, add it to the stack,
+                // to ensure that there will be a parenthetical partner later
                 stack.push(char);
             } else {
-                // if it's a closing parenthesis, check if the last opening parenthesis on the stack matches it
+                // if it's a closing parenthesis, check if there is a pair of opening brackets on the stack
                 const lastOpenParenthesis = stack.pop();
                 if (lastOpenParenthesis !== '(') {
                     return false;
                 }
             }
         } else {
-            // if it's not a digit, operator, or parenthesis, return false
+            // Not a digit, operator, or parenthesis
             return false;
         }
     }
 
-    // if the stack is not empty, there are unmatched opening parentheses
+    // Stack not empty, there is/are parenthesis has no partner
     if (stack.length > 0) {
         return false;
     }
 
-    // if we've made it this far, the expression is valid
     return true;
 }
-
-
-/*
-// Input output 
-const readline = require('readline');
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-function calculator() {
-    rl.question('Soal : ', (calcString) => {
-        try {
-            const result = calculate(calcString);
-            console.log(`Hasil perhitungan: ${result}`);
-        } catch (error) {
-            console.log('Terjadi kesalahan: ' + error);
-        }
-    });
-}
-
-calculator();
-*/
-
-/**
- * Pembanding :
- * eval()
- */
